@@ -46,3 +46,19 @@
         }
     }
 }
+
+.product-section{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 3rem;
+    margin-left: 1rem;
+}
+
+.search-product{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    width: 15rem;
+    margin-left: 2rem;
+}
