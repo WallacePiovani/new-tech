@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-const autenticadorMiddleware = (req,res,next) => {
+export const autenticadorMiddleware = (req,res,next) => {
 
     //1- precisa verificar se o token de autenticação está presente no cabeçalho da requisição (O token é enviado para o cabeçalho da requisição)
     const autoHeader = req.headers['authorization'];
@@ -18,3 +18,5 @@ const autenticadorMiddleware = (req,res,next) => {
     }) 
 
 }
+
+export default autenticadorMiddleware;

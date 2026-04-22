@@ -12,13 +12,4 @@ export const autenticarUsuario = async(usuario) => {
     }
 }
 
-export const buscarProduto = async (produto) =>{
-    const produtoPesquisado = `%${produto}`;
-    const query = "SELECT * FROM produtos WHERE nome_produto LIKE ?"
-
-    const [rows] = await pool.query(query, [produtoPesquisado])
-
-    return rows;
-}
-
 export default autenticarUsuario
