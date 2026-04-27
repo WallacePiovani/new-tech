@@ -11,14 +11,27 @@ formSearch.addEventListener('submit', (e) =>{
             'Authorization': `Bearer ${token}`
         }
     })
-    .then(res => res.json())
+    .then(res =>{
+        if (!res.ok){
+            return res.json().then(err =>{
+                throw err;
+            });
+        };
+        return res.json();
+    })
     .then(dados => renderizarProdutos(dados))
-    .catch(err => console.error("Erro no teste", err))
-
+    .catch(err =>{
+        if(err.message){
+            alert(err.message);
+        }
+        else{
+            alert('Erro ao buscar produtos!');
+        }
+    })    
 })
 
 function renderizarProdutos(produtos){
-    //console.log(produtos)
+    console.log(produtos)
     const retornoPesquisa = document.getElementById('products-return');
     retornoPesquisa.innerHTML = ''
     produtos.forEach((produto) =>{
