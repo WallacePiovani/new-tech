@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/scripts/authGuard.js"></script>
     <link rel="stylesheet" href="./styles/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <title>New Tech - Lista de Produtos</title>
 </head>
 <body>
@@ -12,24 +13,24 @@
         <h1 class="titulo-pagina">New Tech - Lista de Produtos</h1>
     </header>
     <nav>
-        <ul>
-            <li><a href="#">Cadastrar Produto</a></li>
-            <li><a href="estoque.html">Lista de Produtos</a></li>
+        <ul class="options-nav">
+            <li><a class="btn btn-outline-primary" href="estoque.html">Lista de Produtos</a></li>
+            <li><a class="btn btn-outline-primary" href="cadastroProduto.html">Cadastrar Produto</a></li>   
         </ul>
     </nav>
-    <section class="product-section">
+    <section class="product-section mb-5">
         <h1>Pesquisar Produto</h1>
         <form id="form-search">
             <div class="search-product">
-                <label for="term-search">Nome do produto:</label>
-                <input type="text" id="term-search" name="term-search" required>
-                <button class="botao-login">Pesquisar</button>
+                <label for="term-search" class="form-label">Nome do produto:</label>
+                <input type="text" id="term-search" name="term-search" class="form-control" required>
+                <button class="botao-login btn btn-primary">Pesquisar</button>
             </div>
         </form>
         <h2>Produtos Pesquisados</h2>
-        <div id="products-return">
-
-        </div>
+        <div class="container"></div>
+            <div id="products-return" class="row justify-content-center gap-5">
+            </div>
     </section>
     <script src="/scripts/estoque.js"></script>
 </body>

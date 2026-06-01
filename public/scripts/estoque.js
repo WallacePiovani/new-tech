@@ -31,7 +31,7 @@ formSearch.addEventListener('submit', (e) =>{
 })
 
 function renderizarProdutos(produtos){
-    console.log(produtos)
+    //console.log(produtos)
     const retornoPesquisa = document.getElementById('products-return');
     retornoPesquisa.innerHTML = ''
     produtos.forEach((produto) =>{
@@ -42,10 +42,41 @@ function renderizarProdutos(produtos){
             currency: 'BRL'
         })
         retornoPesquisa.innerHTML += `
-            <img src="${produto.imagem_url}" width="100px" "></img>
-            <h3>${produto.nome_produto}</h3>
-            <p>${precoFormatado}</p>
-            <p>Em estoque: ${produto.quantidade_produto}</p>
+            <div class="card col col-6" style="width: 18rem;">
+                <img src="${produto.imagem_url}" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">${produto.nome_produto}</h5>
+                    <p>${precoFormatado}</p>
+                    <p>Em estoque: ${produto.quantidade_produto}</p>
+                    <a href="produtoDetalhes.html?id=${produto.id}" class="btn btn-outline-primary mb-2">Visualizar Produto</a>
+                    <button class="btn btn-outline-danger btn-deletar" data-id="${produto.id}">Excluir Produto</button>
+                </div>
+            </div>
         `
     })
+
+    retornoPesquisa.addEventListener('click', async (e) => {
+    if (e.target.classList.contains('btn-deletar')) {
+
+        const id = parseInt(e.target.getAttribute('data-id'), 10)
+        
+        if (confirm("Tem certeza que deseja excluir este produto?")) {
+            try {
+                const response = await fetch(`/api/produtos/${id}`, {
+                    method: 'DELETE',
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                
+                const dados = await response.json();
+                if (!response.ok) throw new Error(dados.message);
+                
+                alert('Produto excluído!');
+                e.target.closest('.card').remove(); 
+                
+            } catch (err) {
+                alert(err.message);
+            }
+        }
+    }
+});
 }
